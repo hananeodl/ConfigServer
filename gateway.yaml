@@ -5,8 +5,15 @@ server:
     key-store: classpath:gateway-keystore.p12
     key-store-password: mypassword
     key-store-type: PKCS12
+
+    trust-store: classpath:truststore.p12
+    trust-store-password: changeit
+    trust-store-type: PKCS12
   http2:
     enabled: true
+  tls:
+    enabled: true
+
 
 spring:
   application:
@@ -29,10 +36,17 @@ spring:
             - Path=/employee-profile/**
     discovery:
       enabled: true
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            jwk-set-uri: http://localhost:8081/.well-known/jwks.json
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: https://localhost:8761/eureka/
+    register-with-eureka: false
+    fetch-registry: true
   instance:
     prefer-ip-address: true
