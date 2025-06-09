@@ -22,11 +22,11 @@ spring:
           lower-case-service-id: true 
       routes:
         - id: payroll-service
-          uri: https://localhost:8083
+          uri: lb://payroll-service
           predicates:
             - Path=/api/payroll/**
         - id: absence-management
-          uri: https://localhost:8082
+          uri: lb://absence-management
           predicates:
             - Path=/api/absence/**
         - id: employee-profile
