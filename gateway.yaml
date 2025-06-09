@@ -5,25 +5,25 @@ server:
 spring:
   application:
     name: gateway
-    cloud:
-      gateway:
-        discovery:
-          locator:
-            enabled: true
-            lower-case-service-id: true 
-        routes:
-          - id: payroll-service
-            uri: https://localhost:8083
-            predicates:
-              - Path=/api/payroll/**
-          - id: absence-management
-            uri: https://localhost:8082
-            predicates:
-              - Path=/api/absence/**
-          - id: employee-profile
-            uri: lb://employee-profile
-            predicates:
-              - Path=/employee-profile/**
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true 
+      routes:
+        - id: payroll-service
+          uri: https://localhost:8083
+          predicates:
+            - Path=/api/payroll/**
+        - id: absence-management
+          uri: https://localhost:8082
+          predicates:
+            - Path=/api/absence/**
+        - id: employee-profile
+          uri: lb://employee-profile
+          predicates:
+            - Path=/employee-profile/**
     discovery:
       enabled: true
     security:
