@@ -26,11 +26,6 @@ spring:
             - Path=/employee-profile/**
     discovery:
       enabled: true
-    security:
-      oauth2:
-        resourceserver:
-          jwt:
-            jwk-set-uri: http://localhost:8081/.well-known/jwks.json
 
 eureka:
   client:
