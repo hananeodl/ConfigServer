@@ -1,33 +1,61 @@
 server:
   port: 8083
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: ${SSL_KEYSTORE_PASSWORD:changeit}
+    key-store-type: PKCS12
+    protocol: TLSv1.3
 
 spring:
   application:
     name: payroll-service
   datasource:
-    url: jdbc:mysql://localhost:3306/payroll_db
-    username: root
-    password: ""
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:payroll_db}?useSSL=${DB_USE_SSL:false}&serverTimezone=UTC
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 15
+      minimum-idle: 5
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    database-platform: org.hibernate.dialect.MySQLDialect
-  security:
-    user:
-      name: admin
-      password: secret123
+      ddl-auto: ${HIBERNATE_DDL_AUTO:update} 
+    show-sql: ${SHOW_SQL:true}
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
 
 eureka:
   client:
     service-url:
-      defaultZone: https://localhost:8761/eureka
+      defaultZone: ${EUREKA_URL:https://localhost:8761/eureka/}
+    healthcheck:
+      enabled: true
   instance:
+    prefer-ip-address: true
     secure-port-enabled: true
-    secure-port: 8083  
-    status-page-url: https://localhost:8083/actuator/info
-    health-check-url: https://localhost:8083/actuator/health
-    home-page-url: https://localhost:8083/
+    secure-port: ${server.port}
+    metadata-map:
+      management:
+        context-path: /actuator
+      instanceId: ${spring.application.name}:${random.value}
+
 jwt:
-  secret: my-shared-service-secret-key
+  secret: ${JWT_SECRET:my-shared-service-secret-key}
+  expiration: ${JWT_EXPIRATION:86400000}  # 24h en ms
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: false
