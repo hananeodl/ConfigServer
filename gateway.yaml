@@ -25,24 +25,23 @@ spring:
           predicates:
             - Path=/api/payroll/**
           filters:
-            - name: JwtValidation
-              args:
-                secret: ${jwt.secret}
+            - JwtAuthenticationFilter
         - id: absence-management
           uri: lb://absence-management
           predicates:
             - Path=/api/absence/**
           filters:
-            - name: JwtValidation
+            - name: JwtAuthenticationFilter
         - id: employee-profile
           uri: lb://employee-profile
           predicates:
             - Path=/api/auth/**
           filters:
             - StripPrefix=1
+            - RewritePath=/api/auth/(?<segment>.*), /app/$\{segment}
 
 jwt:
-  secret: ${JWT_SECRET:my-shared-service-secret-key} 
+  secret: ${JWT_SECRET:maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!}
 
 eureka:
   client:
