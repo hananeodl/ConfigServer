@@ -2,7 +2,7 @@ server:
   port: 8050
 spring:
   application:
-    name: employee-profile
+    name: employee_profile
 
   datasource:
     url: jdbc:mysql://localhost:3306/employee?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
