@@ -34,7 +34,7 @@ spring:
           filters:
             - name: JwtAuthenticationFilter
         - id: employee-profile
-          uri: lb://employee_profile
+          uri: lb://employee-profile
           predicates:
             - Path=/api/auth/**
           filters:
