@@ -26,4 +26,4 @@ eureka:
     health-check-url: https://localhost:8082/actuator/health
     home-page-url: https://localhost:8082/
 jwt:
-  secret: my-shared-service-secret-key
+  secret: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
