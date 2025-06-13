@@ -23,4 +23,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 jwt:
-  secret: my-shared-service-secret-key
+  secret: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
