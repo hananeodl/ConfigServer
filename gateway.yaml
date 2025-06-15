@@ -39,11 +39,6 @@ spring:
             - Path=/api/auth/**
           filters:
             - StripPrefix=1
-            - RewritePath=/api/auth/(?<segment>.*), /app/${segment}
-          predicates:
-            - Path=/api/auth/**
-          filters:
-            - StripPrefix=1
             - RewritePath=/(?<segment>.*), /app/${segment}
 
 jwt:
