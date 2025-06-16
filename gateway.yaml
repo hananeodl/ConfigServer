@@ -26,7 +26,7 @@ spring:
           predicates:
             - Path=/api/payroll/**
           filters:
-            - name: JwtAuthenticationFilter
+            - JwtAuthenticationFilter
         - id: absence-management
           uri: lb://absence-management
           predicates:
