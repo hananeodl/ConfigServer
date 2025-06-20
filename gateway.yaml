@@ -26,7 +26,10 @@ spring:
           predicates:
             - Path=/api/payroll/**
           filters:
-            - JwtAuthenticationFilter
+            - name: JwtAuthenticationFilter
+            - RewritePath=/api/payroll(?<segment>/?.*), $\{segment}
+            - SetRequestHeader=X-User-Id, ${header.X-User-Id}
+            - SetRequestHeader=X-User-Role, ${header.X-User-Role}
         - id: absence-management
           uri: lb://absence-management
           predicates:
