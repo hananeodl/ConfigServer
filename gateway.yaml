@@ -27,7 +27,6 @@ spring:
             - Path=/api/payroll/**
           filters:
             - name: JwtAuthenticationFilter
-            - SetRequestHeader=Authorization, "${header.authorization}" 
         - id: absence-management
           uri: lb://absence-management
           predicates:
