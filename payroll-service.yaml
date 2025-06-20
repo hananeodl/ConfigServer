@@ -17,11 +17,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         transaction.jta.platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          secret-key: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
 
 eureka:
   client:
