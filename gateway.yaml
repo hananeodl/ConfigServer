@@ -26,7 +26,8 @@ spring:
           predicates:
             - Path=/api/payroll/**
           filters:
-            - name: JwtAuthenticationFilter
+            - TokenRelay=
+            - StripPrefix=1
         - id: absence-management
           uri: lb://absence-management
           predicates:
@@ -41,7 +42,7 @@ spring:
             - RewritePath=api/auth/(?<segment>.*), /app/${segment}
 
 jwt:
-  secret: ${JWT_SECRET:maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!}
+  secret: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
 
 eureka:
   client:
