@@ -36,8 +36,6 @@ spring:
           filters:
             - RewritePath=api/auth/(?<segment>.*), /app/${segment}
 
-jwt:
-  secret: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
 
 eureka:
   client:
