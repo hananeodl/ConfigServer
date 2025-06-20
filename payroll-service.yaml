@@ -18,9 +18,10 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         transaction.jta.platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
   security:
-    user:
-      name: admin
-      password: secret123
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
 
 eureka:
   client:
@@ -32,5 +33,3 @@ eureka:
     status-page-url: https://localhost:8083/actuator/info
     health-check-url: https://localhost:8083/actuator/health
     home-page-url: https://localhost:8083/
-jwt:
-  secret: "maCleSecreteTrèsLonguePourJWTQueTuDoisChangerEtMettreEnSecurite123!"
