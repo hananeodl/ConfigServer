@@ -31,6 +31,8 @@ spring:
           uri: lb://absence-management
           predicates:
             - Path=/api/absence/**
+          filters:
+            - name: JwtAuthenticationFilter
         - id: employee-profile
           uri: lb://employee-profile
           predicates:
